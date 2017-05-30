@@ -4,8 +4,13 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
+
 import {setStock} from '../../redux/modules/products';
 import {addToCart, setCartAmount} from '../../redux/modules/cart';
+import {Button} from "../../components/Button/Button";
+import {ProductItem} from '../../components/ProductItem/ProductItem';
+import './Home.css';
+import {ProductList} from "../../components/ProductList/ProductList";
 
 export const Home = connect(
     state => ({
@@ -53,15 +58,27 @@ export const Home = connect(
         render() {
             const {products, productList, cart} = this.props;
             console.log(this.props);
-            return (<div>
-                {productList.filter(x => products[x].stock.remaining > 0).map(x => {
-                    return <div key={x} onClick={() => {
-                        this.handleClick(x)
-                    }}>
-                        {products[x].stock.remaining}
-                    </div>
-                })}
+            return (<div className="content">
+                <h1 className="title">Products' catalog</h1>
 
+                <section className="catalog">
+                    <header className="catalog__header">
+                        <div className="catalog__info">
+                            {productList.length} items were found
+                        </div>
+                    </header>
+
+                    <div className="catalog__content">
+                        <ProductList productList={productList} products={products} />
+                    </div>
+
+                </section>
+
+
+
+                <div>
+                    <Button onClick={()=>{console.log('click')}}>test</Button>
+                </div>
                 <div>
                     Cart:
                     {

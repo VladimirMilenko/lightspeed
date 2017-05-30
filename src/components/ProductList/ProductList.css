@@ -1,0 +1,45 @@
+.layout:before,
+.layout:after
+{
+    display: table;
+
+    content: '';
+}
+
+.layout:after
+{
+    clear: both;
+}
+
+.layout__cell
+{
+    float: left;
+    padding: 5px 10px 5px 0;
+}
+
+.layout-3-2 .layout__cell
+{
+    width: 33.33333%;
+}
+
+.layout-3-2 .layout__cell:nth-child(3n+3)
+{
+    padding-right: 0;
+}
+
+@media (max-width: 900px) and (min-width: 0) {
+    .layout-3-2 .layout__cell
+    {
+        width: 50%;
+    }
+
+    .layout-3-2 .layout__cell:nth-child(3n+3)
+    {
+        padding-right: 10px;
+    }
+
+    .layout-3-2 .layout__cell:nth-child(2n+2)
+    {
+        padding-right: 0;
+    }
+}
