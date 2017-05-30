@@ -56,7 +56,9 @@ img
     border: 0;
 }
 
-a
+a,
+input,
+button
 {
     outline: 0;
 }

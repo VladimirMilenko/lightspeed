@@ -3,6 +3,7 @@
  */
 export const ADD_TO_CART = 'lightspeed/cart/ADD_TO_CART';
 export const SET_AMOUNT = 'lightspeed/cart/SET_AMOUNT';
+export const CHECKOUT = 'lightspeed/cart/CHECKOUT';
 
 const initialState = {
     productList: [],
@@ -22,6 +23,8 @@ const productListReducer = (state = initialState.productList, action) => {
                 return [...state];
             }
             return state;
+        case CHECKOUT:
+            return initialState.productList;
         default:
             return state;
     }
@@ -47,6 +50,8 @@ const productQuantityReducer = (state = initialState.productQuantity, action) =>
                     [action.productId]: action.amount
                 }
             }
+        case CHECKOUT:
+            return initialState.productQuantity;
         default:
             return state;
     }
@@ -57,8 +62,8 @@ export default function reducer(state = initialState, action = {}) {
     switch (action.type) {
         default:
             return {
-                productList: productListReducer(state.productList,action),
-                productQuantity: productQuantityReducer(state.productQuantity,action)
+                productList: productListReducer(state.productList, action),
+                productQuantity: productQuantityReducer(state.productQuantity, action)
             };
     }
 }
@@ -75,5 +80,11 @@ export function setCartAmount(productId, amount) {
         type: SET_AMOUNT,
         productId,
         amount
+    }
+}
+
+export function checkout() {
+    return {
+        type: CHECKOUT
     }
 }

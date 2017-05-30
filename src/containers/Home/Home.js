@@ -1,16 +1,16 @@
 /**
  * Created by netre on 30.05.2017.
  */
-import React, {Component} from 'react';
-import PropTypes from 'prop-types';
+import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
+import {push} from 'react-router-redux';
 
 import {setStock} from '../../redux/modules/products';
 import {addToCart, setCartAmount} from '../../redux/modules/cart';
 import {Button} from "../../components/Button/Button";
-import {ProductItem} from '../../components/ProductItem/ProductItem';
-import './Home.css';
 import {ProductList} from "../../components/ProductList/ProductList";
+
+import './Home.css';
 
 export const Home = connect(
     state => ({
@@ -21,9 +21,8 @@ export const Home = connect(
             productQuantity: state.cart.productQuantity
         }
     }),
-    {setStock, addToCart, setCartAmount})(
+    {setStock, addToCart, setCartAmount, push})(
     class Home extends Component {
-        // eslint-disable-next-line
         static propTypes = {
             productList: PropTypes.arrayOf(PropTypes.string),
             products: PropTypes.object,
@@ -36,28 +35,20 @@ export const Home = connect(
             setCartAmount: PropTypes.func
         };
 
-        handleClick = (productId) => {
+        handleBuyClick = (productId) => {
             const {products, cart, addToCart, setStock} = this.props;
-            console.log(products[productId].stock.initialRemaining);
             if (products[productId].stock.initialRemaining >= (cart.productQuantity[productId] || 0) + 1) {
                 addToCart(productId);
-                setStock(productId, products[productId].stock.remaining-1);
+                setStock(productId, products[productId].stock.remaining - 1);
             }
         };
 
         handleCartClick = (productId) => {
-            const {products, cart, setStock, setCartAmount} = this.props;
-
-            if (cart.productQuantity[productId] >= 1) {
-                setStock(productId, products[productId].stock.remaining + 1);
-                setCartAmount(productId, cart.productQuantity[productId] - 1);
-            }
-
+            this.props.push('/product/' + productId);
         };
 
         render() {
             const {products, productList, cart} = this.props;
-            console.log(this.props);
             return (<div className="content">
                 <h1 className="title">Products' catalog</h1>
 
@@ -69,29 +60,14 @@ export const Home = connect(
                     </header>
 
                     <div className="catalog__content">
-                        <ProductList productList={productList} products={products} />
+                        <ProductList
+                            onProductBuyClick={this.handleBuyClick}
+                            onProductClick={this.handleCartClick}
+                            productList={productList}
+                            products={products}/>
                     </div>
 
                 </section>
-
-
-
-                <div>
-                    <Button onClick={()=>{console.log('click')}}>test</Button>
-                </div>
-                <div>
-                    Cart:
-                    {
-                        cart.productList.map(x => {
-                            return <div key={x} onClick={() => {
-                                this.handleCartClick(x);
-                            }}>
-                                Title: {products[x].title}
-                                Amount: {cart.productQuantity[x]}
-                            </div>
-                        })
-                    }
-                </div>
             </div>);
         }
     });

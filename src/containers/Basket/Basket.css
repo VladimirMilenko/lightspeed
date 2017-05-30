@@ -1,0 +1,153 @@
+.product_view_order
+{
+    font-size: 12px;
+
+    min-height: 0;
+
+    box-shadow: none;
+}
+
+.product_view_order:hover
+{
+    background: rgba(221, 221, 221, .3);
+    box-shadow: none;
+}
+
+.product_view_order .product__title
+{
+    font: 12px/1em Arial, sans-serif;
+
+    letter-spacing: 0;
+
+    color: #2b2b2b;
+}
+
+.product_view_order .product__preview
+{
+    width: 50px;
+    height: 50px;
+}
+
+.product_view_order .product__info
+{
+    overflow: hidden;
+
+    margin: 0 0 0 60px;
+}
+
+
+.shopping-cart
+{
+    position: relative;
+
+    float: right;
+}
+
+.shopping-cart__title
+{
+    margin: 0 0 0 10px;
+}
+
+.shopping-cart__icon
+{
+    font-size: 24px;
+
+    color: #e30413;
+}
+
+.shopping-cart__summary
+{
+    font-size: 16px;
+
+    display: block;
+
+    padding: 4px 0 0;
+}
+
+.shopping-cart__switcher
+{
+    font: 18px Arial, sans-serif;
+
+    height: 70px;
+    margin: 0;
+    padding: 0 20px;
+
+    cursor: pointer;
+    text-align: right;
+    text-transform: uppercase;
+
+    border: 1px solid #ddd;
+    border-top: 0;
+    border-bottom: 0;
+    background: #fff;
+}
+
+.shopping-cart__switcher:hover,
+.shopping-cart_state_opened .shopping-cart__switcher
+{
+    color: #fff;
+    background: #e30413;
+}
+
+.shopping-cart__switcher:hover .shopping-cart__icon,
+.shopping-cart_state_opened .shopping-cart__icon
+{
+    color: #fff;
+}
+
+.shopping-cart__content
+{
+    position: absolute;
+    z-index: 10000;
+    top: 100%;
+    right: 0;
+
+    display: none;
+
+    width: 350px;
+
+    border: 1px solid #ddd;
+    background: #fff;
+    -webkit-box-shadow: 0 6px 15px -5px rgba(0, 0, 0, .4);
+    box-shadow: 0 6px 15px -5px rgba(0, 0, 0, .4);
+}
+
+.shopping-cart_state_opened .shopping-cart__content
+{
+    display: block;
+}
+
+.shopping-cart__total
+{
+    width: 100%;
+    padding: 10px;
+
+    border-top: 1px solid #ddd;
+}
+
+.shopping-cart__summ
+{
+    font: bold 18px/36px Arial, sans-serif;
+
+    vertical-align: middle;
+}
+
+.shopping-cart__btn
+{
+    float: right;
+}
+
+.cart-list
+{
+    padding: 0;
+}
+
+.cart-list__item
+{
+    border-bottom: 1px solid #ddd;
+}
+
+.cart-list__item:last-child
+{
+    border: 0;
+}
