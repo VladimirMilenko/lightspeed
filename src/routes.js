@@ -7,7 +7,7 @@ import {IndexRoute, Route} from 'react-router';
 import {isLoaded as isProductsLoaded, load as loadProducts} from './redux/modules/products';
 
 import App from "./containers/App/App";
-import {Home} from "./containers/Home/Home";
+import Modal from "./containers/Modal/Modal";
 
 export default (store) => {
     const requireProductsLoad = (nextState, replace, cb) => {
@@ -28,8 +28,8 @@ export default (store) => {
     };
 
     return (
-        <Route path="/" component={App} onEnter={requireProductsLoad}>
-            <IndexRoute component={Home}/>
+        <Route path="/" components={App} onEnter={requireProductsLoad}>
+            <Route path="product/:productId" component={Modal} />
         </Route>
     )
 }

@@ -4,5 +4,11 @@
 import React from 'react';
 import './Button.css';
 export const Button = (props) => {
-    return <button className="btn" {...props}>{props.children}</button>
+
+    function onClick(event) {
+        event.target.blur();
+        props.onClick && props.onClick(event);
+    }
+
+    return <button className={"btn"} {...props} onClick={onClick}>{props.children}</button>
 };

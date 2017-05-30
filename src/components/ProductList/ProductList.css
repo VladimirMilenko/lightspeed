@@ -1,19 +1,17 @@
-.layout:before,
-.layout:after
+.layout
 {
-    display: table;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
 
-    content: '';
-}
-
-.layout:after
-{
-    clear: both;
+    -webkit-flex-flow: row wrap;
+    flex-flow: row wrap;
 }
 
 .layout__cell
 {
-    float: left;
     padding: 5px 10px 5px 0;
 }
 
@@ -27,7 +25,7 @@
     padding-right: 0;
 }
 
-@media (max-width: 900px) and (min-width: 0) {
+@media (max-width: 1000px) and (min-width: 0) {
     .layout-3-2 .layout__cell
     {
         width: 50%;
