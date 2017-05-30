@@ -2,6 +2,7 @@
   "name": "lightspeed",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://vladimirmilenko.github.io/lightspeed",
   "dependencies": {
     "axios": "^0.16.1",
     "prop-types": "^15.5.10",
