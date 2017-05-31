@@ -25,7 +25,8 @@
     padding-right: 0;
 }
 
-@media (max-width: 1000px) and (min-width: 0) {
+@media (max-width: 1000px) and (min-width: 721px)
+{
     .layout-3-2 .layout__cell
     {
         width: 50%;
@@ -39,5 +40,20 @@
     .layout-3-2 .layout__cell:nth-child(2n+2)
     {
         padding-right: 0;
+    }
+}
+
+@media (max-width: 720px) and (min-width: 0)
+{
+    .layout-3-2 .layout__cell
+    {
+        width: 100%;
+        padding: 5px 10px;
+    }
+
+    .layout-3-2 .layout__cell:nth-child(2n+2),
+    .layout-3-2 .layout__cell:nth-child(3n+3)
+    {
+        padding: 5px 10px;
     }
 }

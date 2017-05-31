@@ -12,7 +12,7 @@ export const BasketProductItem = (props) => {
         <li className="cart-list__item">
             <div className="product product_view_order">
                 <div className="product__preview">
-                    <img className="product__photo"
+                    <img className="product__photo" alt="Product"
                          src={props.image}/>
                 </div>
                 <div className="product__info">

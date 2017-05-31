@@ -11,6 +11,21 @@ import {addToCart, setCartAmount} from '../../redux/modules/cart';
 import {setStock} from '../../redux/modules/products';
 
 export class Modal extends Component {
+    componentWillUnmount() {
+        document.body.scrollTop = this.$prevScroll;
+
+        //FIREFOX Scroll fix
+        document.documentElement.scrollTop = this.$prevScroll;
+    }
+    componentDidMount() {
+        this.$prevScroll = document.body.scrollTop || document.documentElement.scrollTop;
+
+        document.body.scrollTop = 0;
+
+        //FIREFOX Scroll fix
+        document.documentElement.scrollTop = 0;
+    }
+
     handleClickClose = () => {
         this.props.push('/');
     };
@@ -25,7 +40,7 @@ export class Modal extends Component {
         const {products, cart, addToCart, setStock, setCartAmount} = this.props;
         const productId = this.props.params.productId;
 
-        let amount = parseInt(this.$qnt.value);
+        let amount = parseInt(this.$qnt.value, 10);
         if (amount < 0) {
             alert('Graces! You have found an easter egg!');
         } else {
@@ -38,18 +53,18 @@ export class Modal extends Component {
 
         this.$qnt.value = 0;
     };
-
     handleAddClick = ()=> {
-          this.$qnt.value = parseInt(this.$qnt.value) +1;
+          this.$qnt.value = parseInt(this.$qnt.value, 10) +1;
     };
     handleDelClick = ()=> {
-        this.$qnt.value = (parseInt(this.$qnt.value) - 1) || 0;
+        this.$qnt.value = (parseInt(this.$qnt.value, 10) - 1) || 0;
 
     };
     render() {
         const {products} = this.props,
             productId = this.props.params.productId,
             product = products[productId];
+
         return (
             <div onClick={this.handleBgClose} className="modal" ref={body => this.$modalBody = body}>
                 <div className="modal__body">
@@ -57,7 +72,7 @@ export class Modal extends Component {
                     </div>
                     <div className="product product_view_detail">
                         <div className="product__preview">
-                            <img className="product__photo"
+                            <img className="product__photo" alt="Product"
                                  src={product.image}/>
                         </div>
                         <div className="product__info">

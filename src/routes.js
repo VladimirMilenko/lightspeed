@@ -2,7 +2,7 @@
  * Created by netre on 30.05.2017.
  */
 import React from 'react';
-import {IndexRoute, Route} from 'react-router';
+import {Route} from 'react-router';
 
 import {isLoaded as isProductsLoaded, load as loadProducts} from './redux/modules/products';
 

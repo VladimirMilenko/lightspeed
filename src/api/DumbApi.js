@@ -6,7 +6,7 @@ import axios from 'axios';
 export class DumbApi {
     //TODO: Fetch products
     fetchProducts() {
-        return axios.get('http://beta.json-generator.com/api/json/get/4kiDK7gxZ')
+        return axios.get('https://vladimirmilenko.github.io/lightspeed/products.json')
             .then((response) => {
                 return response.data
             })
